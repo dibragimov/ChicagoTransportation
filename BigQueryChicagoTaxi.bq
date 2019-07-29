@@ -1,0 +1,8 @@
+SELECT AVG(trip_seconds) as duration, AVG(trip_miles) as length ,
+        EXTRACT(YEAR FROM trip_start_timestamp) AS trip_start_year,
+        EXTRACT(MONTH FROM trip_start_timestamp) AS trip_start_month,
+        EXTRACT(DAY FROM trip_start_timestamp) AS trip_start_day,
+        pickup_community_area
+FROM `bigquery-public-data.chicago_taxi_trips.taxi_trips`
+WHERE EXTRACT(YEAR FROM trip_start_timestamp) > 2017
+GROUP BY trip_start_year, trip_start_month, trip_start_day, pickup_community_area
